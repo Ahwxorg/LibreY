@@ -146,6 +146,13 @@
               "i2p": null,
               "country": "KR",
               "librey": false
-          }
+          },
+          {
+	      "clearnet": "https://librey.org",
+	      "tor": "http:////jxhkfulu6wpdl4apuy4dyivuowmpprvsd7e3el2z73crq7fmyv7rjkyd.onion",
+	      "i2p": null,
+	      "country": "US"
+	      "librey": true
+	  }
     ]
 }
