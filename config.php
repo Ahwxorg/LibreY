@@ -1,0 +1,158 @@
+<?php
+    return (object) array(
+
+        // e.g.: fr -> https://google.fr/
+        "google_domain" => "com",
+
+        // Results will be in this language
+        "language" => "",
+        "number_of_results" => 10,
+
+        // You can use any Invidious instance here
+        "invidious_instance_for_video_results" => "https://invidious.snopyta.org",
+
+        "disable_bittorent_search" => false,
+        "bittorent_trackers" => "&tr=http://nyaa.tracker.wf:7777/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.torrent.eu.org:451/announce",
+
+        "disable_hidden_service_search" => false,
+
+        // Fallback to another librex instance if google search fails
+        // This may greatly increase the time it takes to get a result, if a direct search is not possible
+        "instance_fallback" => true,
+
+        // how long in minutes to put google/other instances on cooldown if they aren't responding
+        "request_cooldown" => 25,
+
+        /*
+            Preset privacy friendly frontends for users, these can be overwritten by users in the settings
+            e.g.: Preset the invidious instance URL: "instance_url" => "https://yewtu.be",
+        */
+
+        "frontends" => array(
+            "invidious" => array(
+                "instance_url" => "",
+                "project_url" => "https://docs.invidious.io/instances/",
+                "original_name" => "YouTube",
+                "original_url" => "youtube.com"
+            ),
+            "rimgo" => array(
+                "instance_url" => "",
+                "project_url" => "https://codeberg.org/video-prize-ranch/rimgo#instances",
+                "original_name" => "Imgur",
+                "original_url" => "imgur.com"
+            ),
+            "scribe" => array(
+                "instance_url" => "",
+                "project_url" => "https://git.sr.ht/~edwardloveall/scribe/tree/main/docs/instances.md",
+                "original_name" => "Medium",
+                "original_url" => "medium.com"
+            ),
+            "gothub" => array(
+                "instance_url" => "",
+                "project_url" => "https://codeberg.org/gothub/gothub#instances",
+                "original_name" => "GitHub",
+                "original_url" => "github.com"
+            ),
+            "nitter" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/zedeus/nitter/wiki/Instances",
+                "original_name" => "Twitter",
+                "original_url" => "twitter.com"
+            ),
+
+            "libreddit" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/libreddit/libreddit-instances/blob/master/instances.md",
+                "original_name" => "Reddit",
+                "original_url" => "reddit.com"
+            ),
+            "proxitok" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/pablouser1/ProxiTok/wiki/Public-instances",
+                "original_name" => "TikTok",
+                "original_url" => "tiktok.com"
+            ),
+            "wikiless" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/Metastem/wikiless#instances",
+                "original_name" => "Wikipedia",
+                "original_url" => "wikipedia.org"
+            ),
+            "quetre" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/zyachel/quetre#instances",
+                "original_name" => "Quora",
+                "original_url" => "quora.com"
+            ),
+            "libremdb" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/zyachel/libremdb#instances",
+                "original_name" => "IMDb",
+                "original_url" => "imdb.com"
+            ),
+            "breezewiki" => array(
+                "instance_url" => "",
+                "project_url" => "https://docs.breezewiki.com/Links.html",
+                "original_name" => "Fandom",
+                "original_url" => "fandom.com"
+            ),
+            "anonymousoverflow" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/httpjamesm/AnonymousOverflow#clearnet-instances",
+                "original_name" => "StackOverflow",
+                "original_url" => "stackoverflow.com"
+            ),
+            "suds" => array(
+                "instance_url" => "",
+                "project_url" => "https://git.vern.cc/cobra/Suds/src/branch/main/instances.json",
+                "original_name" => "Snopes",
+                "original_url" => "snopes.com"
+            ),
+            "biblioreads" => array(
+                "instance_url" => "",
+                "project_url" => "https://github.com/nesaku/BiblioReads#instances",
+                "original_name" => "Goodreads",
+                "original_url" => "goodreads.com"
+            )
+        ),
+
+
+        "preferred_engines" => array(
+
+            /* replace with "text" => "duckduckgo" to use duckduckgo instead
+            * (recommended if being ratelimited */
+            "text" => "google"
+            // "text" => "duckduckgo"
+        ),
+
+
+        /*
+            To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:
+
+            CURLOPT_PROXYTYPE options:
+
+                CURLPROXY_HTTP
+                CURLPROXY_SOCKS4
+                CURLPROXY_SOCKS4A
+                CURLPROXY_SOCKS5
+                CURLPROXY_SOCKS5_HOSTNAME
+
+            !!! ONLY CHANGE THE OTHER OPTIONS IF YOU KNOW WHAT YOU ARE DOING !!!
+        */
+        "curl_settings" => array(
+            // CURLOPT_PROXY => "ip:port",
+            // CURLOPT_PROXYTYPE => CURLPROXY_HTTP,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:116.0) Gecko/20100101 Firefox/116.0", // For a normal Windows 10 PC running Firefox x64
+            CURLOPT_IPRESOLVE => CURL_IPRESOLVE_WHATEVER,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
+            CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
+            CURLOPT_MAXREDIRS => 5,
+            CURLOPT_TIMEOUT => 3,
+            CURLOPT_VERBOSE => false,
+            CURLOPT_FOLLOWLOCATION => true
+        )
+    );
+?>
