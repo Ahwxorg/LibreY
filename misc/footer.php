@@ -1,5 +1,5 @@
 <div class="footer-container">
-    <a href="./">LibreY</a>
+    <a class="hide" href="./">LibreY</a>
     <a href="https://github.com/Ahwxorg/librey/" target="_blank">Source</a>
     <a href="./instances.php" target="_blank">Instances</a>
     <a href="./settings.php">Settings</a>
