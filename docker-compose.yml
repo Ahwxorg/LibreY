@@ -1,7 +1,7 @@
 version: "2.1"
 services:
   librey:
-    image: ahwxorg/librey:latest
+    image: librey/librey:latest
     container_name: librey
     network_mode: bridge
     ports:
