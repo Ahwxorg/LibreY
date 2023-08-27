@@ -32,13 +32,13 @@ a,
 .special-result-container a,
 .did-you-mean a,
 .sub-search-button-wrapper a,
-.sub-search-button-wrapper a:visited{
+.sub-search-button-wrapper a:visited {
     color: #bd93f9;
 }
 
 .sub-search-button-wrapper .active {
     border-bottom: 2px #bd93f9 solid;
-    padding-bottom: 6px;
+    padding-bottom: 10px;
 }
 
 a:hover,
@@ -46,25 +46,44 @@ a:hover,
     text-decoration: underline;
 }
 
+
+.centered {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
 .search-container {
     text-align: center;
-    margin-top: 10%;
 }
 
 .search-container h1 {
     font-size: 70px;
+    margin-top: 0;
 }
 
-.search-container input,
-.sub-search-container input {
-    width: 500px;
+.search-container input {
+    width: 540px;
     color: var(--search-container-text-color);
     background-color: var(--search-container-background-color);
-    padding: 10px;
+    padding: 15px;
     font-size: inherit;
     font-family: sans-serif;
     border: 1px solid var(--search-container-background-border);
-    border-radius: 25px;
+    border-radius: 10px;
+}
+
+.sub-search-container input {
+    width: 540px;
+    color: var(--search-container-text-color);
+    background-color: var(--search-container-background-color);
+    padding: 12px;
+    font-size: inherit;
+    font-family: sans-serif;
+    border: 1px solid var(--search-container-background-border);
+    border-radius: 10px;
 }
 
 .search-button-wrapper button,
@@ -119,6 +138,7 @@ a:hover,
 
 .sub-search-button-wrapper {
     margin-left: 165px;
+    margin-bottom: 10px;
 }
 
 .search-button-wrapper button:hover,
@@ -136,9 +156,9 @@ a:hover,
     border: none;
     background-color: inherit;
     font-size: 15px;
-    margin-right: 14px;
-	cursor: pointer;
-	text-decoration: none;
+    margin-right: 20px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .sub-search-button-wrapper img {
@@ -303,8 +323,7 @@ a[title] {
     width: 100vw;
     left: 0;
     background-color: var(--footer-bg);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 10px;
     border-top: 1px solid var(--border);
     text-align: center;
 }
@@ -344,6 +363,7 @@ a[title] {
         position: relative;
         float: none;
         margin-left: 165px;
+        margin-bottom: 10px;
     }
 }
 
@@ -358,7 +378,8 @@ a[title] {
     }
 
     .search-container input {
-        width: 80%;
+        width: 85%;
+        padding: 15px;
     }
 
     .search-button-wrapper button {
@@ -415,7 +436,7 @@ a[title] {
     }
 
     .sub-search-container input {
-        width: 80%;
+        width: 83%;
         position: relative;
         left: 0px;
         margin-top: 0px;
@@ -476,5 +497,18 @@ a[title] {
 
     .next-page-button-wrapper {
         margin-top: 30px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 40%;
+        width: 100%;
+    }
+
+    .text-result-container,
+    #time,
+    .next-page-button-wrapper,
+    .did-you-mean {
+        margin-left: 20px;
     }
 }
