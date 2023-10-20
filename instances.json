@@ -153,6 +153,20 @@
               "i2p": null,
               "country": "PL",
               "librey": false
+          },
+          {
+              "clearnet": "https://xoogle.cz/",
+              "tor": null,
+              "i2p": null,
+              "country": "CZ",
+              "librey": false
+          },
+          {
+              "clearnet": "https://sk.xoogle.cz/",
+              "tor": null,
+              "i2p": null,
+              "country": "SK",
+              "librey": false
           }
     ]
 }
