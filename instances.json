@@ -50,13 +50,6 @@
       "librey": true
     },
     {
-      "clearnet": "https://search.milivojevic.in.rs/",
-      "tor": null,
-      "i2p": null,
-      "country": "RS",
-      "librey": true
-    },
-    {
       "clearnet": "https://glass.prpl.wtf",
       "tor": null,
       "i2p": null,
@@ -138,13 +131,6 @@
       "tor": null,
       "i2p": null,
       "country": "IT",
-      "librey": true
-    },
-    {
-      "clearnet": "https://search.zeroish.xyz/",
-      "tor": null,
-      "i2p": null,
-      "country": "US",
       "librey": true
     },
     {
