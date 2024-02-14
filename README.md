@@ -63,7 +63,8 @@ sudo pacman -S php php-fpm php-apcu nginx git
 Clone LibreY:
 
 ```sh
-mkdir -p /var/www/html
+sudo mkdir -p /var/www/html/LibreY
+sudo chown $(whoami) /var/html/www/LibreY
 git clone https://github.com/Ahwxorg/LibreY.git /var/www/html/LibreY
 ```
 
@@ -111,10 +112,29 @@ location @extensionless-php {
 }
 ```
 
+If you've put your nginx configuration in a file in `sites_available`, link it and test nginx
+
+```sh
+function link_nginx(){
+  domain="$1"
+  sudo ln -s /etc/nginx/sites-available/$domain /etc/nginx/sites-enabled/$domain
+}
+link_nginx your_domain.com
+sudo nginx -t
+```
+
 Start php-fpm and nginx immediately and on every boot:
 
 ```sh
 sudo systemctl enable --now php-fpm nginx
+```
+
+The name of the php-fpm file might vary depending on the version; you can find it with
+
+```
+sudo systemctl list-unit-files | grep php.*fpm
+# example output: php8.1-fpm.service
+sudo systemctl enable --now php8.1-fpm
 ```
 
 Now LibreY should be running at the port you specified!
