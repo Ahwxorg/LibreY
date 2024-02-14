@@ -135,7 +135,7 @@
 
 
         /*
-            To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:
+            To send requests through a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:
 
             CURLOPT_PROXYTYPE options:
 
