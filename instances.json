@@ -153,6 +153,13 @@
       "i2p": null,
       "country": "US",
       "librey": true
+    },
+    {
+      "clearnet": "https://search.idevicehacked.com/",
+      "tor": null,
+      "i2p": null,
+      "country": "US",
+      "librey": true
     }
   ]
 }
