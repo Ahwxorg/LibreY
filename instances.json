@@ -104,6 +104,13 @@
       "i2p": null,
       "country": "KR",
       "librey": true
+    },
+    {
+      "clearnet": "https://librey.sny.sh/",
+      "tor": null,
+      "i2p": null,
+      "country": "DE",
+      "librey": true
     }
   ]
 }
