@@ -32,7 +32,7 @@
     }
 
     function store_cached_results($url, $results, $ttl = 0) {
-        if (function_exists("apcu_store") && !empty($results))
+        if (function_exists("apcu_store") && !empty($results) && $ttl >= 0)
             return apcu_store("cached:$url", $results, $ttl);
     }
 

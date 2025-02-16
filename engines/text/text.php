@@ -114,7 +114,7 @@
 
             if (!empty($results)) {
                 $results["results_source"] = parse_url($this->engine_request->url)["host"];
-                store_cached_results($this->cache_key, $results);
+                store_cached_results($this->cache_key, $results, $this->opts->cache_time * 60);
             }
 
             return $results;
