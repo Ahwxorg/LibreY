@@ -1,7 +1,8 @@
 <?php
         require_once "misc/search_engine.php";
 
-        $domain = parse_url($_SERVER['SERVER_NAME']);
+        $domain = $_SERVER['SERVER_NAME'];
+        error_log("domain is ". $domain);
         // Reset all cookies when resetting, or before saving new cookies
         if (isset($_REQUEST["reset"])) {
             if (isset($_SERVER["HTTP_COOKIE"])) {
