@@ -1,6 +1,6 @@
 <?php
     function get_engines() {
-        return array("google", "duckduckgo", "brave", "yandex", "ecosia", "mojeek");
+        return array("yacy", "google", "duckduckgo", "brave", "yandex", "ecosia", "mojeek");
     }
 
     class TextSearch extends EngineRequest {
@@ -58,9 +58,16 @@
         }
 
         private function get_engine_request($engine, $opts, $mh) {
+            if ($engine == "yacy") {
+                require_once "engines/text/yacy.php";
+                return new YaCyRequest($opts, $mh);
+            }
             if ($engine == "google") {
-                require_once "engines/text/google.php";
-                return new GoogleRequest($opts, $mh);
+                //require_once "engines/text/google.php";
+                //return new GoogleRequest($opts, $mh);
+                
+                // Google is broken, see #214, return null
+                return null;
             }
 
             if ($engine == "duckduckgo") {
@@ -84,8 +91,11 @@
             }
 
             if ($engine == "mojeek") {
-                require_once "engines/text/mojeek.php";
-                return new MojeekSearchRequest($opts, $mh);
+                //require_once "engines/text/mojeek.php";
+                //return new MojeekSearchRequest($opts, $mh);
+
+                // Mojeek does not provide good results, like ever
+                return null;
             }
 
             // if an invalid engine is selected, don't give any results

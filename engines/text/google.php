@@ -22,6 +22,7 @@
             if (isset($_COOKIE["safe_search"]))
                 $url .= "&safe=medium";
 
+            error_log("$url");
             return $url;
         }
 
@@ -29,6 +30,7 @@
         public function parse_results($response) {
             $results = array();
             $xpath = get_xpath($response);
+
 
             if (!$xpath)
                 return $results;
