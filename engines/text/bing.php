@@ -53,7 +53,7 @@
                     // Base64 "coded", extract and decode
                     $possible_url = str_replace('-', '+', $possible_url);
                     $possible_url = str_replace('_', '/', $possible_url);
-                    $url = base64_decode($possible_url, true);
+                    $url = urldecode(base64_decode($possible_url, true));
                 } else
                     $url = $possible_url;
 
