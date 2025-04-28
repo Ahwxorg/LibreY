@@ -57,6 +57,9 @@
                 } else
                     $url = $possible_url;
 
+                if (str_starts_with($url, "a1")) 
+                  continue; // It's probably a Bing-relative link such as for video, skip it. 
+
                 if (!empty($results) && array_key_exists("url", $results) && end($results)["url"] == $url->textContent)
                     continue;
 
