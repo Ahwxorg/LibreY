@@ -1,6 +1,24 @@
 <?php
     class GoogleRequest extends EngineRequest {
+        protected string $arc_id;
+        protected int $arc_timestamp = 0;
+
+        private function generate_arc_id() {
+            $charset = "01234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
+            $this->arc_id = "srp_";
+
+            for ($i = 0; $i < 24; $i++) {
+                $c = random_int(0, strlen($charset) - 1);
+                $this->arc_id .= $charset[$c];
+            }
+
+            $this->arc_id .= "_1";
+            $this->arc_timestamp = time();
+        }
+
         public function get_request_url() {
+            if ($this->arc_timestamp + 3600 < time())
+                $this->generate_arc_id();
 
             $query_encoded = str_replace("%22", "\"", urlencode($this->query));
             $results = array();
@@ -8,6 +26,7 @@
             $domain = $this->opts->google_domain;
             $results_language = $this->opts->language;
             $number_of_results = $this->opts->number_of_results;
+            $arc_page = sprintf("%02d", $this->page * 10);
 
             $url = "https://www.google.$domain/search?q=$query_encoded&nfpr=1&start=$this->page";
 
@@ -22,6 +41,8 @@
             if (isset($_COOKIE["safe_search"]))
                 $url .= "&safe=medium";
 
+            $url .= "&asearch=arc&async=arc_id:$this->arc_id$arc_page,use_ac:true,_fmt:html";
+
             return $url;
         }
 
@@ -33,21 +54,21 @@
             if (!$xpath)
                 return $results;
 
-            $didyoumean = $xpath->query(".//a[@class='gL9Hy']")[0];
+            $didyoumean = $xpath->query(".//p[@class='QRYxYe NNMgCf']/a/b/i")[0];
 
             if (!is_null($didyoumean))
                 array_push($results, array(
                     "did_you_mean" => $didyoumean->textContent
                 ));
 
-            foreach($xpath->query("//div[@id='search']//div[contains(@class, 'g')]") as $result) {
-                $url = $xpath->evaluate(".//div[@class='yuRUbf']//a/@href", $result)[0];
+            foreach($xpath->query("//div[@class='MjjYud']") as $result) {
+                $url = $xpath->evaluate(".//a[@class='zReHs']/@href", $result)[0];
 
                 if ($url == null)
                     continue;
 
                 if (!empty($results) && array_key_exists("url", end($results)) && end($results)["url"] == $url->textContent)
-                        continue;
+                    continue;
 
                 $url = $url->textContent;
 
