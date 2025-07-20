@@ -13,7 +13,7 @@
                 $page = 9;
             else
                 $page = 9 + (($this->page - 2) * 14);
-            $url = "https://www.bing.com/search?q=$query_encoded&first=$page";
+            $url = "https://www.bing.com/search?q=$query_encoded&first=$page&rdr=1";
 
             if (!is_null($results_language))
                 $url .= "&srchlang=$results_language";
