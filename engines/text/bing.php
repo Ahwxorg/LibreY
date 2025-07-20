@@ -15,6 +15,9 @@
                 $page = 9 + (($this->page - 2) * 14);
             $url = "https://www.bing.com/search?q=$query_encoded&first=$page&rdr=1";
 
+            $randomBytes = strtoupper(bin2hex(random_bytes(16)));
+            $url = "https://www.bing.com/search?q=$query_encoded&first=$page&rdr=1&rdrig=$randomBytes";
+
             if (!is_null($results_language))
                 $url .= "&srchlang=$results_language";
 
