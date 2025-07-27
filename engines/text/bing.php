@@ -6,12 +6,25 @@
             $results_language = $this->opts->language;
             $number_of_results = $this->opts->number_of_results;
 
-            // TODO figure out how to not autocorrect
-            $url = "https://www.bing.com/search?q=$query_encoded&first=" . ((10 * $this->page) + 1);
+            // NOTE Page(0,1)=1, Page(2)=9, Page(3+)=23..37..51..
+            if ($this->page <= 1)
+                $page = 1;
+            elseif($this->page == 2)
+                $page = 9;
+            else
+                $page = 9 + (($this->page - 2) * 14);
+            $url = "https://www.bing.com/search?q=$query_encoded&first=$page&rdr=1";
 
-            // TODO language setting
+            $randomBytes = strtoupper(bin2hex(random_bytes(16)));
+            $url = "https://www.bing.com/search?q=$query_encoded&first=$page&rdr=1&rdrig=$randomBytes";
+
             if (!is_null($results_language))
-                $url .= "&lang=$results_language";
+                $url .= "&srchlang=$results_language";
+
+            // TODO Reconsider current safe-search implementation for granularity
+            // NOTE Possible values are strict, demote (moderate, default), off
+            if (isset($_COOKIE["safe_search"]))
+                $url .= "&adlt=demote";
 
             return $url;
         }
@@ -23,8 +36,8 @@
             if (!$xpath)
                 return $results;
 
-            foreach($xpath->query("//ol[@id='b_results']//li") as $result) {
-                $href_url = $xpath->evaluate(".//h2//a//@href", $result)[0];
+            foreach($xpath->query("//ol[@id='b_results']/li") as $result) {
+                $href_url = $xpath->evaluate(".//h2/a/@href", $result)[0];
 
                 if ($href_url == null)
                     continue;
@@ -63,14 +76,14 @@
                 if (!empty($results) && array_key_exists("url", $results) && end($results)["url"] == $url->textContent)
                     continue;
 
-                $title = $xpath->evaluate(".//h2//a", $result)[0];
+                $title = $xpath->evaluate("./h2/a", $result)[0];
 
                 if ($title == null)
                     continue;
 
                 $title = $title->textContent;
 
-                $description = ($xpath->evaluate(".//div[contains(@class, 'b_caption')]//p", $result)[0] ?? null) ?->textContent ?? '';
+                $description = ($xpath->evaluate("./div[contains(@class, 'b_caption')]/p", $result)[0] ?? null) ?->textContent ?? '';
 
                 array_push($results,
                     array (
@@ -83,10 +96,16 @@
                                           htmlspecialchars($description)
                     )
                 );
-
             }
+
+            $didyoumean = $xpath->evaluate("//ol[@id='b_results']/li/div[contains(@class, 'sp_requery')]/a/strong")[0] ?? null;
+
+            if (!is_null($didyoumean))
+                array_push($results, array(
+                    "did_you_mean" => $didyoumean->textContent
+                ));
+
            return $results;
         }
-
     }
 ?>
