@@ -3,7 +3,12 @@
         public function get_request_url() {
             $offset = $this->page * 5; // load 50 images per page
             $query = urlencode($this->query);
-            return "https://api.qwant.com/v3/search/images?q=$query&t=images&count=50&locale=en_us&offset=$offset&device=desktop&tgp=3&safesearch=1";
+            $url = "https://api.qwant.com/v3/search/images?q=$query&t=images&count=50&locale=en_us&offset=$offset&device=desktop&tgp=3";
+
+            if (isset($_COOKIE["safe_search"]))
+                $url .= "&safesearch=1";
+
+            return $url;
         }
 
         public function parse_results($response) {
@@ -18,7 +23,7 @@
 
             for ($i = 0; $i < $imgCount; $i++)
             {
-                array_push($results, 
+                array_push($results,
                     array (
                         "thumbnail" => htmlspecialchars($imgs[$i]["thumbnail"]),
                         "alt" => htmlspecialchars($imgs[$i]["title"]),
@@ -35,7 +40,7 @@
 
                 foreach($results as $result)
                 {
-                    if (!$result 
+                    if (!$result
                         || !array_key_exists("url", $result)
                         || !array_key_exists("alt", $result))
                         continue;
