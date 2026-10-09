@@ -1,6 +1,19 @@
 <?php
         require_once "misc/search_engine.php";
 
+        // $_SERVER["SERVER_NAME"] is already a host name, so parse_url() on it
+        // returned an array; and $domain was only assigned inside the cookie
+        // loop below, leaving it undefined when saving without resetting.
+        $domain = $_SERVER["SERVER_NAME"] ?? "";
+
+        // A cookie can only be deleted by sending the same path and domain it
+        // was set with, so the deletion has to repeat them.
+        $delete_opts = [
+            "expires" => time() - 1000,
+            "path" => "/",
+            "domain" => $domain,
+        ];
+
         // Reset all cookies when resetting, or before saving new cookies
 	if (isset($_REQUEST["reset"])) {
         // if (isset($_REQUEST["reset"]) || isset($_REQUEST["save"])) {
@@ -11,9 +24,7 @@
                     $parts = explode("=", $cookie);
                     $name = trim($parts[0]);
 
-                    $domain = parse_url($_SERVER['SERVER_NAME']);
-
-                    setcookie($name, "", time() - 1000);
+                    setcookie($name, "", $delete_opts);
                 }
             }
         }
@@ -30,7 +41,7 @@
                         "samesite" => "Strict"  // Strict SameSite policy for better protection against CSRF attacks
                     ]);
                 } else {
-                    setcookie($key, "", time() - 1000);
+                    setcookie($key, "", $delete_opts);
                 }
             }
         }
