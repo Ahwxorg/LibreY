@@ -23,7 +23,7 @@ You can find a list of instances on any LibreY instance by accessing /instances.
 Alternatively look at `instances.json` where the list is generated from.<br><br>
 While the official instances may be more updated and have better uptime, please consider using another person's instances as these are heavily overloaded.<br>
 Support the community. ❤️<br><br>
-[@codedipper](https://github.com/codedipper)'s instance:<br>
+@codedipper's instance:<br>
 [search.revvy.de](https://search.revvy.de/instances.php)<br>
 [Tor](http://search.revvybrr6pvbx4n3j4475h4ghw4elqr4t5xo2vtd3gfpu2nrsnhh57id.onion/instances.php)<br>
 [I2P](http://revekebotog64xrrammtsmjwtwlg3vqyzwdurzt2pu6botg4bejq.b32.i2p/instances.php)<br>

@@ -1,5 +1,7 @@
-> [!IMPORTANT]
-> Please note that this heavily relies on [@codedipper](https://github.com/codedipper)'s [work and is basically a copy of his wiki](https://github.com/codedipper/LibreY-Tor/wiki/LibreY-Tor-Proxy-‐-System-tor).
+> [!NOTE]
+> Originally based on work by `@codedipper`, whose GitHub account no longer
+> exists. The steps below are self-contained and do not need that
+> repository.
 
 0. This was tested on an Arch Linux setup, packages `base` and `tor` must be installed to get the proxy working.\
 LibreY has other requirements as well.\
